@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3 # 00 importando a conexao para o banco de dadoos 
 
 def main():
     try:

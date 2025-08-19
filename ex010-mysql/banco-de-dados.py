@@ -15,7 +15,7 @@ def main():
 
             #2 vamos inserir os dados agora na tabela criada
             lista_usuarios = [
-                ("mamador","arrombado@gmail.com"),("sentarindo","peteratinha@gmail.com")
+                ("mamador","arrombado@gmail.com"),("sentarindo","peteratinha@gmail.com"),("mamadornata, " , "gritandoas0000@hoymail.com")
             ]
             for nome, email in lista_usuarios:
                 cursor.execute(" INSERT OR IGNORE  INTO usuarios (nome, email) VALUES (?,?)" , ( nome, email) )

@@ -3,13 +3,13 @@
 
 
 class Contato():
-    def __init__(self, nome,numero, id=None):
+    def __init__(self, nome,telefone, id=None):
 
         self.id = id
         self.nome = nome
-        self.numero = numero
+        self.telefone = telefone
 
 
     def __str__(self):
-        return f"Agenda( ID:{self.id},nome={self.nome}, numero={self.numero})"
+        return f"Agenda( ID:{self.id},nome={self.nome}, numero={self.telefone})"
 

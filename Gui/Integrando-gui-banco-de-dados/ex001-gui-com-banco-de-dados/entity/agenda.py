@@ -1,14 +1,15 @@
-class Agenda:
-    def __init__(self, nome,telefone):
+
+
+
+
+class Contato():
+    def __init__(self, nome,numero, id=None):
+
+        self.id = id
         self.nome = nome
-        self.telefone = telefone
+        self.numero = numero
 
 
-    def criarContato(self, nome, telefone):
-
-        self.nome = input('Digite seu nome: ')
-
-        self.telefone = int(input('Digite sua telefone: '))
-
-
+    def __str__(self):
+        return f"Agenda( ID:{self.id},nome={self.nome}, numero={self.numero})"
 

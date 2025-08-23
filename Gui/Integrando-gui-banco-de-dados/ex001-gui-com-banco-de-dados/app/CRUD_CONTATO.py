@@ -25,9 +25,9 @@ class Crud:
             finally:
                 conn.close()
 
-    def listar_contato():
+    def listar_contato(self):
 
-        lista_de_contatos = []
+        lista_de_contatos = [ ]
         conn = conectar()
         try:
             if conn:
@@ -43,7 +43,32 @@ class Crud:
             print(f"nao foi possivel criar por causa  {erro}")
         finally:
             conn.close()
-        return lista_de_contatos        
+        return lista_de_contatos
+    def atualizar_contato(self,id, novo_nome, novo_telefone):
+        conn = conectar()
+        if conn:
+            try:
+                with conn.cursor() as cursor:
+                    sql = "UPDATE agenda SET nome=%s, telefone = %s WHERE id = %s"
+                    cursor.execute(sql, (novo_nome, novo_telefone, id))
+                    conn.commit()
+                    if cursor.rowcount > 0:
+                        print("linha atualizada com sucesso!")
+                    print("contato atualizado com sucesso!")
+            except Error as e:
+                print(f"Erro ao atualizar contato: {e}")
+            finally:
+                conn.close()
+
+
+
+
+
+
+
+
+
+
 
     
 

@@ -45,6 +45,8 @@ class Crud:
             conn.close()
         return lista_de_contatos
     def atualizar_contato(self,id, novo_nome, novo_telefone):
+
+        print("chamando o atualizar")
         conn = conectar()
         if conn:
             try:
@@ -54,11 +56,34 @@ class Crud:
                     conn.commit()
                     if cursor.rowcount > 0:
                         print("linha atualizada com sucesso!")
-                    print("contato atualizado com sucesso!")
+                        print("contato atualizado com sucesso!")
+                    else:
+                        print("id nao encotrado")    
             except Error as e:
                 print(f"Erro ao atualizar contato: {e}")
             finally:
                 conn.close()
+    
+    def deletar_contato(self,id):
+        print("chamando a funçao deletar")
+        conn = conectar()
+        if conn:
+            try:
+
+                with conn.cursor() as cursor:
+                    sql=" DELETE FROM  agenda WHERE id = %s"
+                    cursor.execute(sql,(id,))
+                    conn.commit()
+                    if cursor.rowcount > 0:
+                        print(f"contado apagado do id:{id}")
+                    else:
+                        print("nada alterado")    
+            except Error as e:
+                print(f"houve um erro: {e}")   
+            finally:
+                conn.close()
+                print("apagado com sucesso")             
+                    
 
 
 

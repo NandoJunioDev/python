@@ -10,7 +10,9 @@ from app.CRUD_CONTATO import Crud
 from app.gui import App
 
 app = App()
+
 app.mainloop()
+
 
 
     

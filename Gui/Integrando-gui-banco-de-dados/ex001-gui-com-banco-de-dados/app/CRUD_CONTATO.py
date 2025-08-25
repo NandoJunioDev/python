@@ -42,7 +42,8 @@ class Crud:
         except Error as erro:
             print(f"nao foi possivel criar por causa  {erro}")
         finally:
-            conn.close()
+            if conn:
+                conn.close()
         return lista_de_contatos
     def atualizar_contato(self,id, novo_nome, novo_telefone):
 

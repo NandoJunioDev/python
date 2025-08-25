@@ -47,23 +47,36 @@ class App(ctk.CTk):
         aba_consulta = self.minha_aba.add("Ver Contatos ")
         self.lista_frame = ctk.CTkScrollableFrame(aba_consulta)
         self.lista_frame.grid(row=0, column=1,)
-        atualizar=ctk.CTkButton(aba_consulta,text="Atualizar contato", command=self.atualizar_contato)
-        atualizar.grid(row=0, column=1, padx=10, pady=10)
+        self.botao_atualizar=ctk.CTkButton(aba_consulta,text="Atualizar contato", command=self.atualizar_contato)
+        self.botao_atualizar.grid(row=2,column=1)
     def interface_deletar(self):
         aba_deletar = self.minha_aba.add("Deletar contato")
-        self.lista_frame = ctk.CTkScrollableFrame(aba_deletar)
-        self.lista_frame.grid(row=1, column=0)
-        id_label = ctk.CTkLabel(aba_deletar,text="Digite o nome")
+        self.lista_frame_interface_deletar = ctk.CTkScrollableFrame(aba_deletar)
+        self.lista_frame_interface_deletar.grid(row=1, column=0)
+        id_label = ctk.CTkLabel(aba_deletar,text="Digite o id ")
         id_label.grid(row=1 ,column=0, )
 
-        id_entry = ctk.CTkEntry(aba_deletar,placeholder_text="ID do contato")
-        id_entry.grid(row=2, column=0)
+        self.id_entry = ctk.CTkEntry(aba_deletar,placeholder_text="ID do contato")
+        self.id_entry.grid(row=2, column=0)
+        butao_apagar = ctk.CTkButton(aba_deletar,text="DELETAR",command=self.deletar_contato)
+        butao_apagar.grid()
     def interface_atualizar(self):
         aba_atualizar = self.minha_aba.add("atualizar contato")
-        self.lista_frame = ctk.CTkScrollableFrame(aba_atualizar)
-        self.lista_frame.grid(row=0, column=0,)
+        self.lista_frame_interface_atualizar = ctk.CTkScrollableFrame(aba_atualizar)
+        self.lista_frame_interface_atualizar.grid(row=0, column=0,)
         label_id = ctk.CTkLabel(aba_atualizar,text="Digite id do contato que deseja atualizar")
         label_id.grid(row=1, column=0, padx=10, pady=10)
+
+        self.label_nome_novo= ctk.CTkLabel(aba_atualizar,text="digite o novo nome")
+        self.label_nome_novo.grid(row=1,column=1)
+        self.entry_nome_novo = ctk.CTkEntry(aba_atualizar,placeholder_text="digite o novo nome")
+        self.entry_nome_novo.grid(row=2, column=1)
+
+
+        self.label_numero_novo = ctk.CTkLabel(aba_atualizar,text="Digite O novo numero")
+        self.label_numero_novo.grid(row=3,column=1)
+       
+        
 
 
 
@@ -81,6 +94,7 @@ class App(ctk.CTk):
         else:
             print("telefone e nome, vazios")
     def atualizar_contato(self):
+      
       lista_de_componetes = self.lista_frame.winfo_children()
       for listacomponetes in lista_de_componetes:
           listacomponetes.destroy()
@@ -91,7 +105,30 @@ class App(ctk.CTk):
 
            novo_label = ctk.CTkLabel(self.lista_frame,text=str(contato))
            novo_label.pack(padx=10, pady=10 , fill="x")
+    def deletar_contato(self):
+        
+        self.id_passado = self.id_entry.get()
+        
+        try:
+            self.id_para_deletar= int(self.id_passado)
+            
+            self.crud.deletar_contato(self.id_para_deletar)
+            self.atualizar_contato()
+            self.id_entry.delete(0,'end')
+            
+            
+        except ValueError:
+            print("id  precisa ser um numero")    
+        
+           
+             
+           
 
+
+        
+        
+
+       
 
 
 
